@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{Title} {block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {block:Description}
+    <meta name="description" content="{MetaDescription}">
+    {/block:Description}
+
+    {block:Hidden}
+    <meta name="if:Endless scrolling" content="1">
+    <meta name="text:Google Analytics ID" content="">
+    <meta name="text:Header Text" content="VR AR & Film Director">
+    <meta name="text:Linkedin URL" content="https://www.linkedin.com/in/anrick/">
+    <meta name="text:Twitter URL" content="https://twitter.com/anrick">
+    {/block:Hidden}
+
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+    {block:Description}
+    <meta name="description" content="{MetaDescription}" />
+    {/block:Description}
+    <link href="https://fonts.googleapis.com/css?family=Gudea|Lato:700" rel="stylesheet">
+    <link rel="stylesheet" href="http://static.tumblr.com/p5zfezn/Fktoox7ys/main.css">
+    <script src="bundle.js"></script>
+</head>
+<body>
+    <header class="header">
+        <svg class="triangle" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polygon class="landscape" points="0,0 100,0 0,100" />
+            <polygon class="portrait" points="0,0 100,0 100,100" />
+        </svg>
+        <a href="{BlogURL}" class="logo" style="background-image: url({Favicon})">
+            anrk.
+        </a>
+        <div>
+            <h1>{text:Header Text}</h1>
+            <nav>
+                <ul>
+                    <li><a tabindex="-1" target="_blank" href="#">clients</a></li>
+                    <li><a tabindex="-1" target="_blank" href="#">work</a></li>
+                    <li><a tabindex="-1" target="_blank" href="#">press</a></li>
+                    <li><a tabindex="-1" target="_blank" href="{text:Twitter URL}">twitter</a></li>
+                    <li><a tabindex="-1" target="_blank" href="{text:Linkedin URL}">linkedin</a></li>
+                </ul>
+            </nav>
+        </div>
+        <button class="toggle-btn">
+            <svg>
+                <circle r="40%" cx="50%" cy="50%" />
+                <line x1="36%" y1="50%" x2="57%" y2="30%"/>
+                <line x1="36%" y1="50%" x2="57%" y2="70%"/>
+            </svg>
+        </button>
+    </header>
+    <ol id="posts">
+    {block:Posts}
+
+        {block:Text}
+        <li class="post text" data-post-id="{PostID}">
+            <div>
+                {block:Title}
+                <h2>
+                {block:PostTitle}<span class="title">{PostTitle}</span>{/block:PostTitle}
+                {block:Date}<span class="date">{Month} {DayOfMonth}</span>{/block:Date}
+                </h2>
+                {/block:Title}
+                <div class="body">
+                {Body}
+                </div>
+                {block:hasTags}
+                <ul class="tags">
+                    {block:Tags}
+                    <li>{Tag}</li>
+                    {/block:Tags}
+                </ul>
+                {/block:hasTags}
+            </div>
+        </li>
+        {/block:Text}
+
+        {block:Photo}
+        <li class="post photo" data-post-id="{PostID}" style="background-image: url({PhotoURL-HighRes})">
+            {block:Title}
+            <h2>
+                {block:PostTitle}<span class="title">{PostTitle}</span>{/block:PostTitle}
+                {block:Date}<span class="date">{Month} {DayOfMonth}</span>{/block:Date}
+            </h2>
+            {/block:Title}
+        </li>
+        {/block:Photo}
+
+
+        {block:Quote}
+        <li class="post quote" data-post-id="{PostID}">
+            <div>
+                <blockquote class="{Length}">{Quote}</blockquote>
+                {block:Source}
+                <div class="source">{Source}</div>
+                {/block:Source}
+            </div>
+        </li>
+        {/block:Quote}
+
+
+        {block:Video}
+        <li class="post video video-{PostID}" data-post-id="{PostID}">
+            <div>
+                <figure>
+                    <div class="video-wrapper">
+                        {Video-700}
+                    </div>
+                    <script>
+                        (function() {
+                            var wrapper = document.querySelector('.video-{PostID} .video-wrapper');
+                            function findIframe() {
+                                var iframe = wrapper.querySelector('iframe');
+                                if (!iframe) {
+                                    setInterval(findIframe, 10);
+                                    return;
+                                }
+                                iframe.setAttribute('width', '');
+                                iframe.setAttribute('height', '');
+                            }
+                            findIframe();
+                        }());
+                    </script>
+                    {block:Caption}
+                    <figcaption class="caption">
+                        {Caption}
+                    </figcaption>
+                    {/block:Caption}
+                </figure>
+            </div>
+        </li>
+        {/block:Video}
+
+
+
+    {/block:Posts}
+
+    </ol>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', '{text:Google Analytics ID}', 'auto');
+ga('send', 'pageview');
+</script>
+
+</body>
+</html>

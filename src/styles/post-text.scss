@@ -1,0 +1,31 @@
+.post.text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+        display: none;
+    }
+
+    > div {
+        width: 33%;
+        margin-left: 25%;
+        justify-content: flex-start;
+        display: flex;
+        flex-direction: column;
+        margin-top: -5em;
+    }
+}
+
+
+
+@media all and (orientation: portrait) {
+
+
+    .post.text > div {
+        margin-top: 50%;
+        margin-left: 0;
+    }
+
+
+}

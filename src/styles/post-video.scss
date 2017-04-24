@@ -1,0 +1,45 @@
+.post.video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+        margin-left: 25%;
+        justify-content: flex-start;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .video-wrapper {
+        width: 30vw;
+        height: 16.87vw;
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .caption {
+        opacity: 0.5;
+    }
+}
+
+
+
+@media all and (orientation: portrait) {
+
+
+    .post.video > div {
+
+        margin-top: 50%;
+        margin-left: 0;
+
+        .video-wrapper {
+            width: 50vw;
+            height: 28.12vw;
+        }
+
+    }
+
+
+}

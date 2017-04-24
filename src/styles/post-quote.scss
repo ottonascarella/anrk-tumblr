@@ -1,0 +1,40 @@
+.post.quote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+        width: 33%;
+        margin-left: 25%;
+        justify-content: flex-start;
+        display: flex;
+        flex-direction: column;
+        margin-top: -5em;
+    }
+
+    .source {
+        color: #8c8c8c ;
+        &:before {
+            content: '— ';
+        }
+    }
+
+    blockquote {
+        border-left: 3px solid;
+        padding-left: 2em;
+    }
+
+}
+
+
+
+@media all and (orientation: portrait) {
+
+
+    .post.quote > div {
+        margin-top: 50%;
+        margin-left: 0;
+    }
+
+
+}
