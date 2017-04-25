@@ -1,0 +1,13 @@
+.clients {
+    transform: translateX(50px);
+    max-width: 74%;
+    margin: auto;
+    display: block;
+}
+
+@media all and (orientation: portrait) {
+    .clients {
+        transform: translateX(0px);
+        max-width: 90%;
+    }
+}

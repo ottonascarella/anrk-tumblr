@@ -24,8 +24,16 @@
     <meta name="description" content="{MetaDescription}" />
     {/block:Description}
     <link href="https://fonts.googleapis.com/css?family=Gudea|Lato:700" rel="stylesheet">
-    <link rel="stylesheet" href="http://static.tumblr.com/p5zfezn/Fktoox7ys/main.css">
-    <script src="bundle.js"></script>
+    <link rel="stylesheet" href="http://static.tumblr.com/p5zfezn/3WAoozn13/main.css">
+    <script>
+        window.blogURL = '{BlogURL}';
+    </script>
+    <script>
+        window.Promise || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.min.js"><\/script>');
+        window.fetch || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"><\/script>');
+    </script>
+
+    <script src="http://static.tumblr.com/p5zfezn/yOloozp0n/bundle.js"></script>
 </head>
 <body>
     <header class="header">
@@ -37,13 +45,13 @@
             anrk.
         </a>
         <div>
-            <h1>{text:Header Text}</h1>
+            <h1><a target="_self" href="{BlogURL}" >{text:Header Text}</a></h1>
             <nav>
                 <ul>
-                    <li><a tabindex="-1" target="_blank" href="#">clients</a></li>
-                    <li><a tabindex="-1" target="_blank" href="#">contact</a></li>
-                    <li><a tabindex="-1" target="_blank" href="{text:Twitter URL}">twitter</a></li>
-                    <li><a tabindex="-1" target="_blank" href="{text:Linkedin URL}">linkedin</a></li>
+                    <li><a target="_self" href="/clients">clients</a></li>
+                    <li><a target="_self" href="/contact">contact</a></li>
+                    <li><a target="_blank" href="{text:Twitter URL}">twitter</a></li>
+                    <li><a target="_blank" href="{text:Linkedin URL}">linkedin</a></li>
                 </ul>
             </nav>
         </div>
@@ -83,28 +91,19 @@
 
         {block:Photoset}
         <li class="post photoset" data-post-id="{PostID}" >
-            {block:Title}
-            <h2>
-                {block:PostTitle}<span class="title">{PostTitle}</span>{/block:PostTitle}
-                {block:Date}<span class="date">{Month} {DayOfMonth}</span>{/block:Date}
-            </h2>
-            {/block:Title}
             <div>
                 {block:Photos}
-                    <div style="background-image: url({PhotoURL-500})" title="{Caption}"></div>
+                    <div style="background-image: url({PhotoURL-500})" title="{Caption}">
+                        <h2>{Caption}</h2>
+                    </div>
                 {/block:Photos}
             </div>
         </li>
         {/block:Photoset}
 
         {block:Photo}
-        <li class="post photo" data-post-id="{PostID}" style="background-image: url({PhotoURL-HighRes})">
-            {block:Title}
-            <h2>
-                {block:PostTitle}<span class="title">{PostTitle}</span>{/block:PostTitle}
-                {block:Date}<span class="date">{Month} {DayOfMonth}</span>{/block:Date}
-            </h2>
-            {/block:Title}
+        <li class="post photo" data-post-id="{PostID}" style="background-image: url({PhotoURL-HighRes})" title="{Caption}">
+            <h2>{Caption}</h2>
         </li>
         {/block:Photo}
 
@@ -158,7 +157,6 @@
     {/block:Posts}
 
     </ol>
-
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

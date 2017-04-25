@@ -1,0 +1,36 @@
+.contact {
+    h2, h3 {
+        font-family: Lato;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        text-align: center;
+        letter-spacing: 0.9rem;
+        margin-bottom: 0.67rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    > div {
+        display: flex;
+        flex-direction: row;
+    }
+
+    div > div {
+        display: flex;
+        flex-direction: column;
+        margin-right: 3rem;
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+
+    li, p {
+        margin: 0 0 1.25rem 0;
+    }
+
+}
