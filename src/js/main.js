@@ -3,6 +3,7 @@ import '../styles/header.scss';
 import '../styles/toggle-btn.scss';
 import '../styles/posts.scss';
 import '../styles/post-photo.scss';
+import '../styles/post-photoset.scss';
 import '../styles/post-text.scss';
 import '../styles/post-quote.scss';
 import '../styles/post-video.scss';

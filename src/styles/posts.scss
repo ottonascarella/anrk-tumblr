@@ -51,7 +51,7 @@
 
 #posts.posts--large {
     @extend .transition-to-large;
-    width: 100%;
+    width: calc(100% - 126px);
 }
 
 @media all and (orientation: portrait) {
@@ -61,6 +61,10 @@
         width: 100%;
         height: 67%;
         top: 33%;
+    }
+
+    #posts.posts--large {
+        width: 100%;
     }
 
 

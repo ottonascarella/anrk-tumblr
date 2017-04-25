@@ -81,6 +81,22 @@
         </li>
         {/block:Text}
 
+        {block:Photoset}
+        <li class="post photoset" data-post-id="{PostID}" >
+            {block:Title}
+            <h2>
+                {block:PostTitle}<span class="title">{PostTitle}</span>{/block:PostTitle}
+                {block:Date}<span class="date">{Month} {DayOfMonth}</span>{/block:Date}
+            </h2>
+            {/block:Title}
+            <div>
+                {block:Photos}
+                    <div style="background-image: url({PhotoURL-500})" title="{Caption}"></div>
+                {/block:Photos}
+            </div>
+        </li>
+        {/block:Photoset}
+
         {block:Photo}
         <li class="post photo" data-post-id="{PostID}" style="background-image: url({PhotoURL-HighRes})">
             {block:Title}
