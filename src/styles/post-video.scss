@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 12px;
 
     > div {
         // margin-left: 130px;
@@ -11,8 +12,8 @@
     }
 
     .video-wrapper {
-        width: 30vw;
-        height: 16.87vw;
+        width: 40vw;
+        height: 22.5vw;
         iframe {
             width: 100%;
             height: 100%;
@@ -21,6 +22,7 @@
 
     .caption {
         opacity: 0.5;
+        font-size: 12px;
     }
 }
 

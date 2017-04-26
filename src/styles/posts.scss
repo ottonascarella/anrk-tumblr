@@ -54,6 +54,19 @@
     width: calc(100% - 126px);
 }
 
+
+@media all and (orientation: landscape) and (max-width: 767px) {
+
+  #posts {
+    width: calc(100% - 216px);
+  }
+
+  #posts.posts--large {
+      width: calc(100% - 78px);
+  }
+
+}
+
 @media all and (orientation: portrait) {
 
 

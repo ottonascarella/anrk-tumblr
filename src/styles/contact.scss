@@ -1,13 +1,16 @@
-.contact {
+.post.text .contact {
+
+    font-size: 16px;
+    // margin-bottom: -29vh;
     h2, h3 {
         font-family: Lato;
         text-transform: uppercase;
     }
 
     h2 {
-        text-align: center;
-        letter-spacing: 0.9rem;
-        margin-bottom: 0.67rem;
+      text-align: center;
+      letter-spacing: 12px;
+      margin-bottom: 12px;
     }
 
     ul {
@@ -33,4 +36,22 @@
         margin: 0 0 1.25rem 0;
     }
 
+}
+
+@media all and (max-width: 767px) {
+
+  .post.text .contact {
+      font-size: 12px;
+      h2 {
+        letter-spacing: 10px;
+        margin-bottom: 10px;
+      }
+  }
+
+}
+
+@media all and (orientation: portrait) {
+  .post.text .contact {
+    margin-bottom: 0px;
+  }
 }

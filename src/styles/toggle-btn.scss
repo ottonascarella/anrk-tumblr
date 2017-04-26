@@ -3,8 +3,8 @@
     z-index: 2;
     cursor: pointer;
     position: absolute;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     bottom: 60px;
     left: 50px;
     border: none;
@@ -12,8 +12,6 @@
     overflow: hidden;
 
     svg {
-        transition: transform 0.7s ease;
-        transform: rotate(0deg);
         width: 100%;
         height: 100%;
         top: 0;
@@ -33,12 +31,46 @@
         stroke-linecap: round;
     }
 
+    .arrow, .info {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .arrow {
+      transform-origin: center center;
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .info {
+      opacity: 0;
+      circle {
+        fill: #000;
+      }
+      line {
+        stroke-width: 2;
+      }
+    }
+
 }
 
-.toggle-btn--open svg {
-    transform: rotate(-540deg);
+.toggle-btn--open {
+    .arrow {
+      opacity: 0;
+      transform: scaleX(0.01);
+    }
+    .info {
+      opacity: 1;
+    }
 }
 
+@media all and (orientation: landscape) and (max-width: 767px) {
+
+  .toggle-btn {
+    bottom: 40px;
+    left: 25px;
+  }
+
+}
 
 @media all and (orientation: portrait) {
 
@@ -47,4 +79,3 @@
     }
 
 }
-

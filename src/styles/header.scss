@@ -24,6 +24,9 @@
         a {
             font: inherit;
             color: inherit;
+            &:hover {
+              opacity: 1;
+            }
         }
     }
 
@@ -102,31 +105,34 @@
 
 }
 
-// @media all and (orientation: landscape) and (max-width: 1023px) {
+@media all and (orientation: landscape) and (max-width: 767px) {
 
-//     .header {
+    .header {
 
-//         > div {
-//             transform: translate3d(30px, 0, 0);
-//         }
+        width: 232px;
 
-//         .logo {
-//             top: 40px;
-//             left: 30px;
-//         }
+        > div {
+            transform: translate3d(25px, 0, 0);
+        }
 
-//         h1 {
-//             font-size: 20px;
-//         }
+        .logo {
+            top: 40px;
+            left: 24px;
+        }
 
+        h1 {
+            font-size: 20px;
+        }
 
-//     }
+        // toggle on its file
 
-//     .header--closed {
-//         width: 90px;
-//     }
+    }
 
-// }
+    .header--closed {
+        width: 85px;
+    }
+
+}
 
 @media all and (orientation: portrait) {
 

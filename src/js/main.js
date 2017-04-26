@@ -20,6 +20,9 @@ import Pager from './pager';
 
 document.addEventListener('DOMContentLoaded', function() {
     var posts = new Posts();
-    new Pager(window.blogURL);
     new Header(posts);
+
+    if (!window.isBlogMainPage) return;
+    new Pager(window.blogURL);
+
 });

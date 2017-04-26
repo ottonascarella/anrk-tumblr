@@ -25,7 +25,7 @@ Pager.prototype = {
         }
 
         window.requestAnimationFrame(function() {
-            if ( (2.5 * window.innerHeight) + window.scrollY >= document.body.scrollHeight ) {
+            if ( (3 * window.innerHeight) + window.scrollY >= document.body.scrollHeight ) {
                 that.nextPage();
             }
         });
@@ -58,7 +58,16 @@ Pager.prototype = {
         var kids = [].slice.call(newPosts.children);
 
         kids.forEach(function(el) {
+
+          if (el.tagName !== 'SCRIPT') {
             posts.appendChild(el);
+            return;
+          }
+
+          var s = document.createElement('script');
+          s.textContent = el.textContent;
+          document.head.appendChild(s);
+
         });
 
         this.page = this.page + 1;

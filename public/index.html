@@ -24,19 +24,23 @@
     <meta name="description" content="{MetaDescription}" />
     {/block:Description}
     <link href="https://fonts.googleapis.com/css?family=Gudea|Lato:700" rel="stylesheet">
-    <link rel="stylesheet" href="http://static.tumblr.com/p5zfezn/3WAoozn13/main.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/p5zfezn/oUBop0vq5/main.css">
+
     <script>
         window.blogURL = '{BlogURL}';
+        {block:IndexPage}
+        window.isBlogMainPage = true;
+        {/block:IndexPage}
     </script>
     <script>
         window.Promise || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.min.js"><\/script>');
         window.fetch || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"><\/script>');
     </script>
 
-    <script src="http://static.tumblr.com/p5zfezn/yOloozp0n/bundle.js"></script>
+    <script src="http://static.tumblr.com/p5zfezn/Cy9op0tfz/bundle.js"></script>
 </head>
 <body>
-    <header class="header">
+    <header class="header header--closed">
         <svg class="slice" viewBox="0 0 100 100" preserveAspectRatio="none">
             <polygon class="landscape" points="0,0 0,100 65,100 100,0" />
             <polygon class="portrait" points="0,0 100,0 100,100 0,87" />
@@ -55,15 +59,21 @@
                 </ul>
             </nav>
         </div>
-        <button class="toggle-btn">
-            <svg>
-                <circle r="40%" cx="50%" cy="50%" />
+        <button class="toggle-btn toggle-btn--open">
+          <svg>
+             <circle r="40%" cx="50%" cy="50%" />
+             <g class="arrow">
                 <line x1="36%" y1="50%" x2="57%" y2="30%"/>
                 <line x1="36%" y1="50%" x2="57%" y2="70%"/>
-            </svg>
+             </g>
+             <g class="info">
+               <circle r="2.25%" cx="50%" cy="29%" />
+               <line x1="50%" y1="44.33%" x2="50%" y2="70%"/>
+             </g>
+          </svg>
         </button>
     </header>
-    <ol id="posts">
+    <ol id="posts" class="posts--large">
     {block:Posts}
 
         {block:Text}

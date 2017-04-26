@@ -21,9 +21,10 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
+                exclude: /node_modules|public/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: 'css-loader!sass-loader'
+                    use: 'css-loader!autoprefixer-loader?browsers=last 5 versions!sass-loader'
                 })
             }
         ]
