@@ -19,6 +19,15 @@ import Posts from './posts';
 import Pager from './pager';
 
 document.addEventListener('DOMContentLoaded', function() {
+
+  if (('ontouchstart' in window) ||
+          ( window.DocumentTouch &&
+            document instanceof DocumentTouch )) {
+
+    document.documentElement.classList.add('touch');
+    
+  }
+
     var posts = new Posts();
     new Header(posts);
 
