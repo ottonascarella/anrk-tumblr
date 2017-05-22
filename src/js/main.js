@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
             document instanceof DocumentTouch )) {
 
     document.documentElement.classList.add('touch');
-    
+
   }
 
     var posts = new Posts();
     new Header(posts);
 
-    if (!window.isBlogMainPage) return;
+    // if (!window.isBlogMainPage) return;
     new Pager(window.blogURL);
 
 });
