@@ -12,7 +12,7 @@
     // background: $gray;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-end;
 
     a {
         font: inherit;
@@ -103,7 +103,7 @@
 
     nav {
         z-index: 1;
-        transform: translateY(4em);
+        margin: 2vh 0 24vh 0;
     }
 
     .portrait {display: none}
@@ -159,6 +159,7 @@
         left: 0;
         justify-content: center;
         flex-direction: column;
+        align-items: center;
 
         .logo {
             top: initial;
@@ -191,6 +192,7 @@
             display: flex;
             justify-content: center;
             transform: none;
+            margin: auto;
         }
 
         li {

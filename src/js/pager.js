@@ -1,27 +1,27 @@
 
-
 function Pager(blogURL) {
     this.page = 1;
+    this.hasFinishedLoading = false;
     this.blogURL = blogURL;
-    this.handleError = this._error.bind(this);
-    this.handleLoaded = this._loaded.bind(this);
+
     this.postsfx = this._postfx.bind(this);
     this.pagefx = this._pagefx.bind(this);
     this.onScroll = this._scroll.bind(this);
     this.nextPostPage = this._nextPostPage.bind(this);
     this.handleLinkClick = this._linkClick.bind(this);
     this.handlePopState = this._popState.bind(this);
-    this.loadURL = this._loadURL.bind(this);
+    this.getURL = this._getURL.bind(this);
+
     if (!this.posts) this.posts = document.getElementById('posts');
 
     window.addEventListener('scroll', this.onScroll);
     window.addEventListener('popstate', this.handlePopState);
-    document.addEventListener('click', this.handleLinkClick, true);
+    document.addEventListener('click', this.handleLinkClick);
 }
 
 Pager.prototype = {
     _popState: function() {
-        this.loadURL(document.location.href, false);
+        this.getURL(document.location.href, false);
     },
     _linkClick: function(e) {
         if (!e.target.matches('a[target="_self"]')) return;
@@ -29,27 +29,33 @@ Pager.prototype = {
         e.stopPropagation();
         var url = e.target.href;
 
+        // if clicked link to same page, do nothing
         if (url === document.location.href) return;
 
-
         window.history.pushState({}, '', url);
-        this.loadURL(url, false);
+
+        // if back to homepage, reset load on scroll
+        if (url === this.blogURL) {
+            this.page = 1;
+            this.hasFinishedLoading = false;
+            window.isBlogMainPage = true;
+        } else {
+            // if other page, avoid loading posts content
+            window.isBlogMainPage = false;
+        }
+
+        this.getURL(url, false);
 
     },
-    _loadURL: function(url, isPosts) {
+    _getURL: function(url, isPosts) {
         var that = this;
         that.isLoading = true;
         fetch(url)
-            .then(this.handleLoaded)
-            .then(function(res) {
-
-                if (window.blogURL == url) {
-                    window.isBlogMainPage = true;
-                } else {
-                    window.isBlogMainPage = false;
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
                 }
-
-                return res;
+                return response.text();
             })
             .then(isPosts ? this.postsfx : this.pagefx)
             .then(function() {
@@ -63,27 +69,21 @@ Pager.prototype = {
 
         if (!window.isBlogMainPage) return;
         if (this.isLoading) return;
-        if (this.finishedLoading) {
+        if (this.hasFinishedLoading) {
             window.removeEventListener('scroll', this.onScroll);
             return;
         }
 
         window.requestAnimationFrame(function() {
-            if ( (3 * window.innerHeight) + window.scrollY >= document.body.scrollHeight ) {
+            if ( (4 * window.innerHeight) + window.scrollY >= document.body.scrollHeight ) {
                 that.nextPostPage();
             }
         });
 
     },
 
-    _error: function(err) {
+    handleError: function(err) {
         console.log(err);
-    },
-
-    _loaded: function(response) {
-        if (!response.ok) throw new Error('Network response was not ok.');
-
-        return response.text();
     },
 
     _pagefx: function(text) {
@@ -95,7 +95,6 @@ Pager.prototype = {
         var newPosts = div.querySelector('#posts');
 
         if (!newPosts || newPosts.children.length < 1) {
-            this.finishedLoading = true;
             return;
         }
 
@@ -103,6 +102,7 @@ Pager.prototype = {
             document.head.querySelector('title').textContent = title.textContent;
         }
 
+        // if (this.blogURL === this.url)
         posts.innerHTML = newPosts.innerHTML;
 
     },
@@ -115,7 +115,7 @@ Pager.prototype = {
         var newPosts = div.querySelector('#posts');
 
         if (!newPosts || newPosts.children.length < 1) {
-            this.finishedLoading = true;
+            this.hasFinishedLoading = true;
             return;
         }
 
@@ -139,11 +139,13 @@ Pager.prototype = {
 
     _nextPostPage: function() {
 
-        if (this.finishedLoading) return;
+        if (this.hasFinishedLoading) return;
 
         if (!this.posts) this.posts = document.getElementById('posts');
 
-        this.loadURL(this.blogURL + 'page/' + (this.page + 1), true);
+        this.page += 1;
+
+        this.getURL(this.blogURL + 'page/' + this.page, true);
 
     },
 
